@@ -2,31 +2,52 @@
 
 namespace ariel {
     Character::Character(const string name, const Point location, int hit_points)
-    : name_(name), location_(location), healthPoints_(hit_points){}
-
-    Character::Character(): name_(""), location_(Point(0,0)), healthPoints_(0){}
+    : name_(name), location_(location), healthPoints_(hit_points), inTeam_(false){}
 
     bool Character::isAlive() const {
-        return -1;
+        return this->healthPoints_ > 0;
     }
 
     double Character::distance(const Character* other) const {
-        return -1;
+        return this->location_.distance(other->getLocation());
     }
 
     void Character::hit(int damage) {
-
+        if(damage<0){
+            throw invalid_argument("Damage must be non-negative");
+        }
+        this->healthPoints_ -= damage;
     }
 
-    const string& Character::getName() const {
+    void Character::setName(string name){
+        this->name_ = name;
+    }
+
+    const string& Character::getName() const{
         return this->name_;
     }
 
-    const Point& Character::getLocation() const {
+    void Character::setLocation(Point location){
+        this->location_ = location;
+    }
+
+    const Point& Character::getLocation() const{
         return this->location_;
     }
 
-    string Character::print() const {
-        return "";
+    int Character::getHealthPoints() const{
+        return this->healthPoints_;
+    }  
+
+    void Character::setHealthPoints(int healthPoints){
+        this->healthPoints_ = healthPoints;
+    }
+
+    bool Character::inTeam() const{
+        return this->inTeam_;
+    }
+
+    void Character::setInTeam(bool inTeam){
+        this->inTeam_ = inTeam;
     }
 };

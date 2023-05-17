@@ -3,25 +3,50 @@
 using namespace std;
 namespace ariel {
         
-    Cowboy::Cowboy(const string name, const Point location): Character(name, location, 100), bullets_(6) {}
+    Cowboy::Cowboy(const string name, const Point location): Character(name, location, 110 ), bullets_(6) {}
 
+    void Cowboy::shoot(Character* enemy) {
+        if (this==enemy){
+            throw runtime_error("cowboy cannot shoot himself");
+        }
 
-    Cowboy::Cowboy(): Character(), bullets_(6) {}
+        if (!enemy->isAlive() || !this->isAlive()){
+            throw runtime_error("Character is dead");
+        }
 
-    void Cowboy::shoot(Character* p_enemy) {
+        else {
+            if(!this->hasBullets()){
+                return;
+            }
+            
+            else {
+                enemy->hit(10);
+                this->bullets_--;
+            }
+        }
         
     }
 
     bool Cowboy::hasBullets() const {
-        return -1;
+        return this->bullets_ > 0;
     }
 
     void Cowboy::reload() {
-        
+        if(!this->isAlive()){
+            throw runtime_error("dead cowboy cannot reload");
+        }
+        this->bullets_ = 6;
     }
 
     string Cowboy::print() const {
-        return "";
+        if (this->isAlive() == false){
+            return "(C " + this->getName() + ")\n";
+        }
+        else{
+              return "Name: " + this->getName() + "\n" + "Location: " + this->getLocation().print() + "\n" + "Health: " + to_string(this->getHealthPoints()) + "\n";
+
+        }
+        
     }
 
     int Cowboy::getBullets() const{

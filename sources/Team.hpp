@@ -1,14 +1,19 @@
 #pragma once
 #include <vector>
+#include <typeinfo>
+#include <algorithm>
 #include "Cowboy.hpp"
-#include "Ninja.hpp"
+#include "Character.hpp"
+#include "OldNinja.hpp"
+#include "YoungNinja.hpp"
+#include "TrainedNinja.hpp"
 
 namespace ariel {
     class Team{
         public:
             Team(Character*);
             //destructors
-            virtual ~Team() = default;
+            virtual ~Team();
             //copy constructor
             Team(const Team&) = default;
             //copy assignment
@@ -22,45 +27,18 @@ namespace ariel {
             virtual void attack(Team*);
             int stillAlive() const;
             virtual string print() const; 
+            virtual Character* chooseVictim(Team*, Character*) const; 
+            virtual void chooseLeader(Team*, Character*); 
 
+            Character* getLeader() const;
+            void setLeader(Character*);
+
+            vector<Character*> getParticipants() const;
 
         private:
             Character* leader;
             vector<Character*> participants_;
-            
     };
 
-    class Team2: public Team{
-        public:
-            Team2(Character*);
-            ~Team2() override = default;
-            //copy constructor
-            Team2(const Team2&) = default;
-            //copy assignment
-            Team2& operator=(const Team2&) = default;
-            //move constructor
-            Team2(Team2&&) noexcept = default;
-            //move assignment
-            Team2& operator=(Team2&&) noexcept = default;
-
-            void attack(Team* team) override;
-            string print() const override; 
-    };
-
-    class SmartTeam: public Team{
-        public:
-            SmartTeam(Character*);
-            ~SmartTeam() override = default;
-            //copy constructor
-            SmartTeam(const SmartTeam&) = default;
-            //copy assignment
-            SmartTeam& operator=(const SmartTeam&) = default;
-            //move constructor
-            SmartTeam(SmartTeam&&) noexcept = default;
-            //move assignment
-            SmartTeam& operator=(SmartTeam&&) noexcept = default;
-
-            void attack(Team* team) override;
-            string print() const override; 
-    };
+    
 };
