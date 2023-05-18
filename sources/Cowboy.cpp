@@ -15,7 +15,7 @@ namespace ariel {
         }
 
         else {
-            if(!this->hasBullets()){
+            if(!this->hasboolets()){
                 return;
             }
             
@@ -27,7 +27,7 @@ namespace ariel {
         
     }
 
-    bool Cowboy::hasBullets() const {
+    bool Cowboy::hasboolets() const {
         return this->bullets_ > 0;
     }
 

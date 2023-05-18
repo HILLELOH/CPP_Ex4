@@ -9,7 +9,7 @@ namespace ariel{
             Cowboy(string, Point);
 
             void shoot(Character*);
-            bool hasBullets() const;
+            bool hasboolets() const;
             void reload();
             string print() const override;
             int getBullets() const;

@@ -160,7 +160,7 @@ namespace ariel {
             Cowboy* curr = dynamic_cast<Cowboy*>(character);
             if(curr!=nullptr){
                 if (curr->isAlive()){
-                    if(curr->hasBullets()){
+                    if(curr->hasboolets()){
                         curr->shoot(victim);
                     }
                     else{

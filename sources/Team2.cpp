@@ -82,7 +82,7 @@ namespace ariel{
                 }
                 else{
                     if(curr->isAlive()){
-                        if(curr->hasBullets()){
+                        if(curr->hasboolets()){
                             curr->shoot(victim);
                         }
                         else{
