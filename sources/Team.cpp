@@ -55,8 +55,6 @@ namespace ariel {
                             new_victim = character;
                         }
                     } 
-                        
-                    
                 }
             }
         }

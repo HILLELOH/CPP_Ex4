@@ -1,12 +1,14 @@
 #pragma once
 #include <vector>
 #include <typeinfo>
+#include <iostream>
 #include <algorithm>
 #include "Cowboy.hpp"
 #include "Character.hpp"
 #include "OldNinja.hpp"
 #include "YoungNinja.hpp"
 #include "TrainedNinja.hpp"
+
 
 namespace ariel {
     class Team{
@@ -23,9 +25,9 @@ namespace ariel {
             //move assignment
             Team& operator=(Team&&) noexcept = default;
 
-            virtual void add(Character*);
+            void add(Character*);
             virtual void attack(Team*);
-            int stillAlive() const;
+            virtual int stillAlive() const;
             virtual string print() const; 
             virtual Character* chooseVictim(Team*, Character*) const; 
             virtual void chooseLeader(Team*, Character*); 

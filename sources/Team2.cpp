@@ -98,9 +98,9 @@ namespace ariel{
     string Team2::print() const{
         string ans = "";
         for (Character* character : this->getParticipants()){
-            ans.append(this->print());
+            ans.append(character->print());
         }
-        cout << ans << endl;
+        // cout << ans << endl;
         return ans;
     }
 };
